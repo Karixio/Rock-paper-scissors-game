@@ -35,9 +35,9 @@ function generateAiPick(){
 };
 
 function gameResult(player, ai){
-    if(player === 'kamień' && ai === 'nożyce' || player === 'papier' && ai === 'kamień' || player === 'nożyce' && ai === 'papier'){
+    if(player === 'rock' && ai === 'scissors' || player === 'paper' && ai === 'rock' || player === 'scissors' && ai === 'paper'){
         return 'win';
-    }else if(player === 'nożyce' && ai === 'kamień' || player === 'kamień' && ai === 'papier' || player === 'papier' && ai === 'nożyce'){
+    }else if(player === 'scissors' && ai === 'rock' || player === 'rock' && ai === 'paper' || player === 'paper' && ai === 'scissors'){
         return 'loss';
     }else{
         return 'tie';
@@ -47,13 +47,13 @@ function gameResult(player, ai){
 function displayResult(result){
     if(result === 'win'){
         winner.style.color = 'green';
-        return 'Wygrałeś!';
+        return 'You win!';
     }else if(result === 'loss'){
         winner.style.color = 'red';
-        return 'Przegrałeś :(';
+        return 'You lost';
     }else if(result === 'tie'){
         winner.style.color = 'gray';
-        return 'Remis :/';
+        return 'Tie :/';
     };
 };
 function clearResult(){
@@ -66,16 +66,16 @@ function clearResult(){
 
 function changeGameSummary(result){
     gameSummary.gamesPlayed++;
-    games.textContent = 'liczba gier: ' + gameSummary.gamesPlayed;
+    games.textContent = 'games: ' + gameSummary.gamesPlayed;
     if(result === 'win'){
         gameSummary.wins++
-        wins.textContent = 'wygranych: ' + gameSummary.wins;
+        wins.textContent = 'wins: ' + gameSummary.wins;
     }else if(result === 'loss'){
         gameSummary.losses++;
-        losses.textContent = 'przegranych: ' + gameSummary.losses;
+        losses.textContent = 'loses: ' + gameSummary.losses;
     }else if(result === 'tie'){
         gameSummary.ties++;
-        ties.textContent = 'remisów: ' + gameSummary.ties;
+        ties.textContent = 'ties: ' + gameSummary.ties;
     };
 
 };
@@ -88,7 +88,7 @@ const game = () => {
     clearResult();
 
     const player = playerPick;
-    const ai = generateAiPick();
+    let ai = generateAiPick();
 
     activePick.style.boxShadow = '';
     playerPicked.textContent = player;
